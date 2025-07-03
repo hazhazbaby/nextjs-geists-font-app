@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Helper Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .achievement-card {
+            transition: all 0.3s ease;
+        }
+        .achievement-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .stat-card {
+            transition: all 0.2s ease;
+        }
+        .stat-card:hover {
+            background-color: #f8f9fa;
+        }
+        .nav-item {
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover {
+            transform: translateY(-2px);
+        }
+        .profile-photo {
+            position: relative;
+            cursor: pointer;
+        }
+        .profile-photo::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 9999px;
+            background: linear-gradient(45deg, #000, transparent);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        .badge {
+            transition: all 0.2s ease;
+        }
+        .badge:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="root">
+        <main class="max-w-md mx-auto bg-white min-h-screen pb-24">
+            <!-- Header -->
+            <header class="p-6 sticky top-0 bg-white/95 backdrop-blur-sm z-10 border-b border-gray-100">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-2xl font-bold text-gray-900">Profile</h1>
+                    <button class="px-5 py-2.5 bg-black text-white rounded-xl hover:bg-gray-800 transition-all duration-200 font-medium shadow-sm hover:shadow-md active:scale-95">
+                        Edit Profile
+                    </button>
+                </div>
+            </header>
+
+            <div class="p-6 space-y-8">
+                <!-- Profile Picture & Name -->
+                <div class="flex flex-col items-center gap-4 py-6">
+                    <div class="profile-photo">
+                        <div class="w-32 h-32 bg-gradient-to-br from-gray-50 to-gray-200 rounded-full flex items-center justify-center text-5xl shadow-inner overflow-hidden">
+                            👤
+                        </div>
+                        <div class="absolute bottom-0 right-0 bg-black text-white p-2 rounded-full shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold text-gray-900">Hazel Vasquez</h2>
+                        <p class="text-gray-500 text-sm mt-1">Member since 2023</p>
+                    </div>
+                </div>
+
+                <!-- User Statistics -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="grid grid-cols-2 divide-x divide-y divide-gray-100">
+                        <div class="stat-card p-5 cursor-pointer">
+                            <label class="text-sm font-medium text-gray-500">Age</label>
+                            <p class="text-lg font-semibold text-gray-900 mt-1">28 years</p>
+                        </div>
+                        <div class="stat-card p-5 cursor-pointer">
+                            <label class="text-sm font-medium text-gray-500">Weight</label>
+                            <p class="text-lg font-semibold text-gray-900 mt-1">65 kg</p>
+                        </div>
+                        <div class="stat-card p-5 cursor-pointer">
+                            <label class="text-sm font-medium text-gray-500">Height</label>
+                            <p class="text-lg font-semibold text-gray-900 mt-1">170 cm</p>
+                        </div>
+                        <div class="stat-card p-5 cursor-pointer">
+                            <label class="text-sm font-medium text-gray-500">BMI</label>
+                            <div class="flex items-center gap-2 mt-1">
+                                <p class="text-lg font-semibold text-gray-900">22.5</p>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Normal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900">Achievements</h2>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-medium text-gray-900">4</span>
+                            <div class="w-px h-4 bg-gray-300"></div>
+                            <span class="text-sm text-gray-500">12 total</span>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="achievement-card p-5 bg-white rounded-2xl shadow-sm border border-gray-200">
+                            <div class="flex items-center gap-4">
+                                <div class="text-4xl p-3 bg-purple-50 rounded-xl">🏆</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h3 class="font-semibold text-gray-900">Health Champion</h3>
+                                            <p class="text-sm text-gray-500 mt-1">Completed 30 days of consistent health tracking</p>
+                                        </div>
+                                        <span class="badge px-2.5 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Rare</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="achievement-card p-5 bg-white rounded-2xl shadow-sm border border-gray-200">
+                            <div class="flex items-center gap-4">
+                                <div class="text-4xl p-3 bg-blue-50 rounded-xl">⭐</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h3 class="font-semibold text-gray-900">Perfect Week</h3>
+                                            <p class="text-sm text-gray-500 mt-1">Logged all vital signs for 7 consecutive days</p>
+                                        </div>
+                                        <span class="badge px-2.5 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Common</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="achievement-card p-5 bg-white rounded-2xl shadow-sm border border-gray-200">
+                            <div class="flex items-center gap-4">
+                                <div class="text-4xl p-3 bg-green-50 rounded-xl">🎯</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h3 class="font-semibold text-gray-900">Goal Setter</h3>
+                                            <p class="text-sm text-gray-500 mt-1">Achieved personal health target</p>
+                                        </div>
+                                        <span class="badge px-2.5 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Progress</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="achievement-card p-5 bg-white rounded-2xl shadow-sm border border-gray-200">
+                            <div class="flex items-center gap-4">
+                                <div class="text-4xl p-3 bg-yellow-50 rounded-xl">💪</div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h3 class="font-semibold text-gray-900">Wellness Warrior</h3>
+                                            <p class="text-sm text-gray-500 mt-1">Maintained healthy vitals for 3 months</p>
+                                        </div>
+                                        <span class="badge px-2.5 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Elite</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+                <div class="max-w-md mx-auto grid grid-cols-5 gap-1 py-3">
+                    <a href="/dashboard" class="nav-item flex flex-col items-center text-gray-400 hover:text-gray-600">
+                        <div class="w-6 h-6 mb-1 text-xl">🏠</div>
+                        <span class="text-xs">My Files</span>
+                    </a>
+                    <a href="/racha" class="nav-item flex flex-col items-center text-gray-400 hover:text-gray-600">
+                        <div class="w-6 h-6 mb-1 text-xl">🔥</div>
+                        <span class="text-xs">Racha</span>
+                    </a>
+                    <button class="nav-item flex flex-col items-center text-gray-400 hover:text-gray-600">
+                        <div class="w-6 h-6 mb-1 text-xl">⬆️</div>
+                        <span class="text-xs">Compartir</span>
+                    </button>
+                    <button class="nav-item flex flex-col items-center text-gray-400 hover:text-gray-600">
+                        <div class="w-6 h-6 mb-1 text-xl">🔔</div>
+                        <span class="text-xs">Alerts</span>
+                    </button>
+                    <button class="nav-item flex flex-col items-center text-gray-900">
+                        <div class="w-6 h-6 mb-1 text-xl">👤</div>
+                        <span class="text-xs">Profile</span>
+                    </button>
+                </div>
+            </nav>
+        </main>
+    </div>
+</body>
+</html>
